@@ -4,3 +4,4 @@ tmp.py
 .idea/
 logs/
 *.pyc
+push.sh
