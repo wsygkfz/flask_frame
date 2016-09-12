@@ -32,7 +32,7 @@ class BaseRequest(FlaskView):
         self._callback = request.args.get('callback')
 
 
-    def render(self,data,code=1000, status_code=200):
+    def _render(self,data,code=1000, status_code=200):
         ''' 按格式输出数据 '''
         #执行时间
         exec_time = time.time() - self._request_start_time

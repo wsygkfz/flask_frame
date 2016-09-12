@@ -3,10 +3,12 @@
 # __author__ = 'yuzhongfu'
 # __mktime__ = '16/8/15'
 
+
 from common.LogManager import get_logger
+from common.NgMongo import NGMongoConnect
 
 import conf.settings as settings
-from conf.settings import LOGS
+from conf.settings import LOGS,DBINFO
 
 
 # 初始化日志
@@ -35,7 +37,27 @@ class InitEnvironVariable():
         )
 
     def __init_mongodb(self):
-        settings.MASTER_MONGO = 1
+
+        master_host = "mongodb://%s:%s@%s:%d/%s"%(
+            DBINFO.USER,
+            DBINFO.PASSWD,
+            DBINFO.MASTER_IP,
+            DBINFO.PORT,
+            DBINFO.DB
+        )
+        slave_host = "mongodb://%s:%s@%s:%d/%s"%(
+            DBINFO.USER,
+            DBINFO.PASSWD,
+            DBINFO.SLAVE_IP,
+            DBINFO.PORT,
+            DBINFO.DB
+        )
+
+        mongo_master = NGMongoConnect(master_host)
+        settings.g_master_db = mongo_master.get_database(DBINFO.DB)
+
+        mongo_slave = NGMongoConnect(slave_host)
+        settings.g_slave_db = mongo_slave.get_database(DBINFO.DB)
 
 
 def init_environ_variable(args={}):

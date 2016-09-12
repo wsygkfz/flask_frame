@@ -4,6 +4,7 @@
 # __mktime__ = '16/8/5'
 
 import os
+import logging
 
 # 入口程序运行的目录
 g_cur_process_run_path = os.getcwd()
@@ -17,22 +18,39 @@ g_root_path = os.path.dirname(g_root_path)
 g_logger = None
 class LOGS():
 
-    # 几钟常用的日志级别
-    __CRITICAL = 50
-    __ERROR    = 40
-    __WARNING  = 30
-    __INFO     = 20
-    __DEBUG    = 10
-    __NOTSET   = 0
     # 日志文件名
     LOG_NAME = "api_web.log"
     # 定义的日志级别
-    LOG_LEVEL = __ERROR
+    LOG_LEVEL = logging.ERROR
     # 是否显示日志到屏幕
     LOG_SHOW_STREAM = True
     # 日志保存的目录
     LOG_PATH = g_cur_process_run_path
 
+
+# 主从数据连接句柄
+g_master_db = None
+g_slave_db = None
+class DBINFO:
+
+    # 国外数据库主库IP
+    MASTER_IP = "54.72.191.195"
+    # 国外数据库从库IP
+    SLAVE_IP = "54.77.171.172"
+
+    PORT = 47077
+
+    USER = "mallcenter"
+    PASSWD = "u3-Yt7A03_eZ9Az2Z"
+
+    # # local 只为测试使用
+    # MASTER_IP = "127.0.0.1"
+    # SLAVE_IP = "127.0.0.1"
+    # PORT = 27017
+    # USER = ""
+    # PASSWD = ""
+
+    DB = "mallcenter"
 
 # 缓存redis
 g_redis = None
@@ -56,10 +74,6 @@ class REDIS:
     CACHE_TIMEOUT_1D  = 24 * 60 * 60
     CACHE_TIMEOUT_1W  = 7 * 24 * 60 * 60
 
-class LOCAL_HOST:
-    # 启动服务器的地址 port
-    HTTP_API_HOST_IP = "0.0.0.0"
-    HTTP_API_HOST_PORT = 8888
 
 
 def start():

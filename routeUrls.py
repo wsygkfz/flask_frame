@@ -12,14 +12,16 @@ import www.controller.website as web
 
 def register_route(app):
 
-
     # 以下为提供的接口路由
     api.testApi.TestApi.register(app, route_prefix='/api')
 
-
-
     # 以下为提供的网站路由
     web.testWeb.TestWeb.register(app, route_prefix='/web')
+
+
+    for rule in app.url_map.iter_rules():
+        print rule
+
 
 
 
