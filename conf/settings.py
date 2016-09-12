@@ -33,22 +33,22 @@ g_master_db = None
 g_slave_db = None
 class DBINFO:
 
-    # 国外数据库主库IP
-    MASTER_IP = "54.72.191.195"
-    # 国外数据库从库IP
-    SLAVE_IP = "54.77.171.172"
-
-    PORT = 47077
-
-    USER = "mallcenter"
-    PASSWD = "u3-Yt7A03_eZ9Az2Z"
-
-    # # local 只为测试使用
-    # MASTER_IP = "127.0.0.1"
-    # SLAVE_IP = "127.0.0.1"
-    # PORT = 27017
+    # # 国外数据库主库IP
+    # MASTER_IP = ""
+    # # 国外数据库从库IP
+    # SLAVE_IP = ""
+    #
+    # PORT = 47077
+    #
     # USER = ""
     # PASSWD = ""
+
+    # # local 只为测试使用
+    MASTER_IP = "127.0.0.1"
+    SLAVE_IP = "127.0.0.1"
+    PORT = 27017
+    USER = ""
+    PASSWD = ""
 
     DB = "mallcenter"
 
